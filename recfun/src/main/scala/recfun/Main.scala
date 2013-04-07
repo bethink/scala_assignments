@@ -86,16 +86,22 @@ object Main {
     }
 
     checkFirstChar(chars)
-    
-    count == 0
-  }                                               //> balance: (chars: List[Char])Boolean
 
+    count == 0
+  } //> balance: (chars: List[Char])Boolean
 
   /**
    * Exercise 3
    */
   def countChange(money: Int, coins: List[Int]): Int = {
 
-    1
+    def change(money: Int, k: Int): Int = {
+      
+      if (k < 0 || money < 0) 0
+      else if (money == 0) 1
+      else change(money, k - 1) + change(money - coins(k), k)
+    }
+    
+    change(money, coins.size - 1)
   }
 }
